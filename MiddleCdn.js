@@ -11,16 +11,16 @@ app.use(mycors.corsWithwhitelist);
 
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-app.get("/middlecdn/client-server-ortak.js", async (req, res) => {
+app.get("/middlecdn/MyCSOmodule.js", async (req, res) => {
   // https://chatgpt.com/share/67533c08-9eac-8011-9160-aa432b147558
 
   // try {
   // Dosyanın tam yolunu belirtin
-  const filePath = path.join(__dirname, "../back-end-nodemiddle/client-server-ortak.js");
+  const filePath = path.join(__dirname, "../back-end-nodemiddle/MyCSOmodule.js");
   console.log(filePath)
   res.status(200).sendFile(filePath);
   // } catch (error) {
-  //   console.log("client-server-ortak.js Dosya gönderiminde hata:", error);
+  //   console.log("MyCSOmodule.js Dosya gönderiminde hata:", error);
   //   res.status(500).send("Dosya sunulurken, bir hata oluştu.");
   // }
 });
@@ -49,7 +49,7 @@ app.get("/middlecdn/client-server-ortak.js", async (req, res) => {
     console.log("*************************************************************");
     console.log("");
     console.log("");
-    console.log("http://localhost:3001/middlecdn/client-server-ortak.js");
+    console.log("http://localhost:3001/middlecdn/MyCSOmodule.js");
     console.log("");
     console.log("");
     console.log(new Date().toLocaleString());
