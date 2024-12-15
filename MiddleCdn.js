@@ -26,6 +26,13 @@ app.get("/middlecdn/MyCSOmodule.js", async (req, res) => {
 });
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+app.get("/middlecdn/XanaduModule.js", async (req, res) => {
+  const filePath = path.join(__dirname, "../back-end-nodemiddle/XanaduModule.js");
+  console.log(filePath)
+  res.status(200).sendFile(filePath);
+});
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 
 
