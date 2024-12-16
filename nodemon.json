@@ -1,0 +1,3 @@
+{
+    "ignore": ["./", "XanaduModule.js", "MyCSOmodule.js"]
+}
