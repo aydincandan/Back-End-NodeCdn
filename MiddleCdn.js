@@ -34,68 +34,74 @@ app.use(mycors.corsWithwhitelist);
 // });
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
-  const beautifyFile = fs.readFileSync(uzakfilePath, { encoding: "utf-8" })
-  const uglifyFile = UglifyJS.minify(beautifyFile);
-
-  if (uglifyFile.error == undefined) {
-    saveFileIfChanged(yerelfilePath, beautifyFile);
-  } else {
-    console.log(uglifyFile.error);
-    console.log("çirkinleştirme BAŞARISIZ");
-  }
-
-  return uglifyFile
-}
-// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 app.get("/rediscdn/MyCSOmodule.js", async (req, res) => {
   const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/MyCSOmodule.js");
   const yerelfilePath = path.join(__dirname, "./MyCSOmodule.js");
-
-  const sonuc1 = sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
-  // console.log(sonuc1.error)
-  // console.log(sonuc1.code.length)
-
+  sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
   console.log(yerelfilePath)// production için atılması(okunması) gereken bu yerelfilePath
   res.status(200).sendFile(yerelfilePath);
 });
-// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 app.get("/rediscdn/XanaduModule.js", async (req, res) => {
   const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/XanaduModule.js");
   const yerelfilePath = path.join(__dirname, "./XanaduModule.js");
-
-  const sonuc2 = sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
-  // console.log(sonuc2.error)
-  // console.log(sonuc2.code.length)
-
+  sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
   console.log(yerelfilePath)// production için atılması(okunması) gereken bu yerelfilePath
   res.status(200).sendFile(yerelfilePath);
 });
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
+  // nodemon.json
+  // {
+  //   "ignore": ["./", "XanaduModule.js", "MyCSOmodule.js", "XanaduModule.txt", "MyCSOmodule.txt"]
+  // }
 
-function calculateHash(filePath) {
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
-  return crypto.createHash('sha256').update(fileContent).digest('hex');
-}
+  // uzak(new)
+  const newContent = fs.readFileSync(uzakfilePath, { encoding: "utf-8" });
+  const newContentUglify = UglifyJS.minify(newContent);
+  const newContentUglifyHash = crypto.createHash('sha256').update(newContentUglify.code).digest('hex');
+  // uzak(new)
 
-function saveFileIfChanged(filePath, newContent) {
-  const newHash = crypto.createHash('sha256').update(newContent).digest('hex');
-  if (fs.existsSync(filePath)) {
-    const oldHash = calculateHash(filePath);
-    if (newHash === oldHash) {
-      // console.log('Dosya değişmedi, kaydedilmiyor.');
+  const yerelsha256txt = yerelfilePath.replace('.js', '.txt')
+  // text olarak kaydedip karşılaştırısak eşitse return olsun
+  if (yerelsha256txt) {
+    // 1. YÖNTEM 
+
+    try {
+      // ... karşılaştırısak eşitse ...
+      if (fs.readFileSync(yerelsha256txt) == newContentUglifyHash) {
+        // console.log('Dosya değişmedi, kaydedilmiyor.', newContentUglifyHash);        
+        return; // ...  return olsun
+      }
+    } catch { }
+
+    fs.writeFileSync(yerelsha256txt, newContentUglifyHash) ; // text olarak kaydedip ...
+
+  } else {
+    // 2. YÖNTEM 
+    // yerel(old)
+    const oldContentUglify = fs.readFileSync(yerelfilePath, { encoding: "utf-8" });
+    const oldContentUglifyHash = crypto.createHash('sha256').update(oldContentUglify).digest('hex');
+    // yerel(old)
+
+    if (newContentUglifyHash === oldContentUglifyHash) {
+      // console.log('Dosya değişmedi, kaydedilmiyor.', newContentUglifyHash);
       return;
     }
   }
-  fs.writeFileSync(filePath, newContent, 'utf-8');
-  console.log(filePath,'Dosya kaydedildi.');
-}
 
+  if (newContentUglify.error == undefined) {
+    fs.writeFileSync(yerelfilePath, newContentUglify.code, 'utf-8');
+    console.log(yerelfilePath, 'Dosya kaydedildi.');
+  } else {
+    console.log(newContentUglify.error); console.log("çirkinleştirme BAŞARISIZ");
+  }
+
+  return newContentUglify
+}
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
 
 // https://chatgpt.com/share/67541ae7-8c48-8011-afe4-5d40bc2eb436
 // if (cluster.isMaster) {
