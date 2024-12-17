@@ -56,10 +56,17 @@ const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
   //   "ignore": ["./", "XanaduModule.js", "MyCSOmodule.js", "XanaduModule.txt", "MyCSOmodule.txt"]
   // }
 
+
+
+  // https://bobcares.com/blog/node-redis-async-await/
+  // console.log("**file of files->", file)
+  // MD5 konusu https://chatgpt.com/share/43f6f0df-5236-433b-ae4e-6e4c5e0a0d9b
+
+  const yontem = 'md5' // veya 'sha256'
   // uzak(new)
   const newContent = fs.readFileSync(uzakfilePath, { encoding: "utf-8" });
   const newContentUglify = UglifyJS.minify(newContent);
-  const newContentUglifyHash = crypto.createHash('sha256').update(newContentUglify.code).digest('hex');
+  const newContentUglifyHash = crypto.createHash(yontem).update(newContentUglify.code).digest('hex');
   // uzak(new)
 
   const yerelsha256txt = yerelfilePath.replace('.js', '.txt')
@@ -75,13 +82,13 @@ const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
       }
     } catch { }
 
-    fs.writeFileSync(yerelsha256txt, newContentUglifyHash) ; // text olarak kaydedip ...
+    fs.writeFileSync(yerelsha256txt, newContentUglifyHash); // text olarak kaydedip ...
 
   } else {
     // 2. YÖNTEM 
     // yerel(old)
     const oldContentUglify = fs.readFileSync(yerelfilePath, { encoding: "utf-8" });
-    const oldContentUglifyHash = crypto.createHash('sha256').update(oldContentUglify).digest('hex');
+    const oldContentUglifyHash = crypto.createHash(yontem).update(oldContentUglify).digest('hex');
     // yerel(old)
 
     if (newContentUglifyHash === oldContentUglifyHash) {
