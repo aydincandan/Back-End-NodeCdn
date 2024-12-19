@@ -1,8 +1,10 @@
 const cluster = require('cluster');
 
 
-const express = require("express");
-const app = express();
+const { express, app, server, port } = require('back-end-nodemiddle/ExpressCoreApp')
+console.log("(back-end-nodecdn) nodecdnApp.js Basladi ... ", { port }) // öncelikle .env, yoksa commandline, yoksa X000 den sonraki boşta olan bir port olmalı.
+
+
 const redis = require('redis');
 const path = require('path');
 const fs = require('fs');
@@ -19,7 +21,7 @@ app.use(mycors.corsWithwhitelist);
 
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-// app.get("/middlecdn/MyCSOmodule.js", async (req, res) => {
+// app.get("/nodecdn/MyCSOmodule.js", async (req, res) => {
 //   // https://chatgpt.com/share/67533c08-9eac-8011-9160-aa432b147558
 
 //   // try {
@@ -120,10 +122,8 @@ const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
 
 {
 
-
-  const PORT = 3001;
-  app.listen(PORT, () => {
-    console.log("Back-End-NodeMiddle servisi calisiyor: http://localhost:" + PORT);
+  app.listen(port, () => {
+    console.log("Back-End-NodeCdn servisi calisiyor: http://localhost:" + port);
     console.log("*************************************************************");
     console.log("");
     console.log("");
@@ -132,7 +132,7 @@ const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
     console.log("");
     console.log("");
     console.log(new Date().toLocaleString());
-    console.log(`Worker ${process.pid} is running on port ${PORT}`);
+    console.log(`Worker ${process.pid} is running on port ${port}`);
     console.log("=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|");
   });
 
