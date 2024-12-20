@@ -1,8 +1,8 @@
 const cluster = require('cluster');
 
 
-const { express, app, server, port } = require('back-end-nodemiddle/ExpressCoreApp')
-console.log("(back-end-nodecdn) nodecdnApp.js Basladi ... ", { port }) // öncelikle .env, yoksa commandline, yoksa X000 den sonraki boşta olan bir port olmalı.
+const { express, app, server, port } = require('back-end-nodemiddle')
+.ExpressCoreApp("(back-end-nodecdn) nodecdnApp.js Basladi ... ")
 
 
 const redis = require('redis');
@@ -140,3 +140,7 @@ const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
 
 }
 
+
+console.log()
+console.log("Ready...", __filename)
+console.log(module.exports)
