@@ -1,7 +1,7 @@
 const cluster = require('cluster');
 
 
-const { express, app, server, port } = require('back-end-nodemiddle')
+const { express, app, server, port } = require('back-end-nodemiddle/ExpressCoreIndex')
 .ExpressCoreApp("(back-end-nodecdn) nodecdnApp.js Basladi ... ")
 
 
@@ -120,27 +120,7 @@ const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
 //   }
 // } else 
 
-{
 
-  app.listen(port, () => {
-    console.log("Back-End-NodeCdn servisi calisiyor: http://localhost:" + port);
-    console.log("*************************************************************");
-    console.log("");
-    console.log("");
-    console.log("http://localhost:3001/rediscdn/MyCSOmodule.js");
-    console.log("http://localhost:3001/rediscdn/XanaduModule.js");
-    console.log("");
-    console.log("");
-    console.log(new Date().toLocaleString());
-    console.log(`Worker ${process.pid} is running on port ${port}`);
-    console.log("=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|");
-  });
-
-
-
-}
-
-
-console.log()
-console.log("Ready...", __filename)
-console.log(module.exports)
+// console.log()
+// console.log("Ready...", __filename)
+// console.log(module.exports)
