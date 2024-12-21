@@ -6,8 +6,10 @@
   "dependencies": {
     "back-end-nodemiddle": "file:../back-end-nodemiddle",
     "cluster": "^0.7.7",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "express": "^4.21.2",
+    "express-session": "^1.18.1",
     "redis": "^3.1.2",
     "uglify-js": "^3.19.3"
   },
