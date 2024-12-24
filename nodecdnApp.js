@@ -1,8 +1,10 @@
 const cluster = require('cluster');
 
 
-const { express, app, server, port } = require('back-end-nodemiddle/ExpressCoreIndex')
-.ExpressCoreApp("(back-end-nodecdn) nodecdnApp.js Basladi ... ")
+const { express, app, server, port, catchallroute } = require('back-end-nodemiddle/ExpressCoreIndex')
+.ExpressCoreApp({filename:__filename})
+server.on('listening', () => { app.all('*', catchallroute); console.log("ok") });
+
 
 
 const redis = require('redis');
