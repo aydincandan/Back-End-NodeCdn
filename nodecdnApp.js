@@ -1,10 +1,24 @@
 const cluster = require('cluster');
 
 
-const { express, app, server, port, catchallroute } = require('back-end-nodemiddle/ExpressCoreIndex')
-.ExpressCoreApp({filename:__filename})
-server.on('listening', () => { app.all('*', catchallroute); console.log("ok") });
+// const { express, app, server, port, catchallroute } = require('back-end-nodemiddle/ExpressCoreIndex')
+// .parametre({filename:__filename})
+// server.on('listening', () => { app.all('*', catchallroute); console.log("ok") });
 
+
+
+
+const express = require('express');
+const app = express();
+app.listen(3001, () => { console.log("app listen 3001") });
+// bunu mu kullanayım 
+// yoksa 
+// aşağıdakini mi?  Hangisi daha doğru.  Ayrı ayrı denedim ikiside çalışıyor? CEVAP : https://chatgpt.com/share/676fdcb9-353c-8011-93ca-bc7b28b0b787
+// const express = require('express');
+// const app = express();
+// const http = require('http');
+// const server = http.createServer(app);
+// server.listen(3001, () => { console.log("server listen 3001") });
 
 
 const redis = require('redis');
