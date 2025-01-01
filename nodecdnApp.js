@@ -3,7 +3,11 @@ const cluster = require('cluster');
 
 // const { express, app, server, port, catchallroute } = require('back-end-nodemiddle/ExpressCoreIndex')
 // .parametre({filename:__filename})
-// server.on('listening', () => { app.all('*', catchallroute); console.log("ok") });
+// server.on('listening', () => {
+//   app.get('/', (req, res) => { res.send('Express.js uygulamasi calisiyor. ' + port) });
+//   app.all('*', catchallroute); console.log("ok")
+// });
+
 
 
 
