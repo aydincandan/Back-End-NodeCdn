@@ -1,7 +1,7 @@
 const cluster = require('cluster');
 
 
-// const { express, app, server, port, catchallroute } = require('back-end-nodemiddle/ExpressCoreIndex')
+// const { express, app, server, port, catchallroute } = require('../Back-End-NodeMiddle-npmjs.com/_npmjs/express-layer')
 // .parametre({filename:__filename})
 // server.on('listening', () => {
 //   app.get('/', (req, res) => { res.send('Express.js uygulamasi calisiyor. ' + port) });
