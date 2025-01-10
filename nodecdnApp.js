@@ -36,7 +36,7 @@ const crypto = require('crypto');
 
 const UglifyJS = require("uglify-js");
 
-var mycors = require('./mycors');
+var mycors = require('mycorssets');
 app.use(mycors.corsWithwhitelist);
 
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
