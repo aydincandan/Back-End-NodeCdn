@@ -52,14 +52,14 @@ app.use(mycors.corsWithwhitelist);
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 app.get("/rediscdn/MyCSOmodule.js", async (req, res) => {
-  const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/MyCSOmodule.js");
+  const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/MyCSOmodule.js");
   const yerelfilePath = path.join(__dirname, "./MyCSOmodule.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
   console.log(yerelfilePath)// production için atılması(okunması) gereken bu yerelfilePath
   res.status(200).sendFile(yerelfilePath);
 });
 app.get("/rediscdn/XanaduModule.js", async (req, res) => {
-  const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/XanaduModule.js");
+  const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/XanaduModule.js");
   const yerelfilePath = path.join(__dirname, "./XanaduModule.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
   console.log(yerelfilePath)// production için atılması(okunması) gereken bu yerelfilePath
