@@ -25,18 +25,13 @@ app.listen(3001, () => { console.log("app listen 3001") });
 // server.listen(3001, () => { console.log("server listen 3001") });
 
 
-const redis = require('redis');
 const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
 
-// const nodemiddle = require('back-end-nodemiddle');
-// const { deleteFiles_Sync, copyFiles_Sync, processFilesForHtml } = nodemiddle.afterbuildlib
-// const Dosyama = nodemiddle.afterbuildlib.default
-
 const UglifyJS = require("uglify-js");
 
-var mycors = require('mycorssets');
+var mycors = require('mycorssets').seturls([]);
 app.use(mycors.corsWithwhitelist);
 
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -139,8 +134,3 @@ const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
 //     cluster.fork();
 //   }
 // } else 
-
-
-// console.log()
-// console.log("Ready...", __filename)
-// console.log(module.exports)
