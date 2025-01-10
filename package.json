@@ -1,6 +1,6 @@
 {
   "name": "back-end-nodecdn",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "herkesin ortak cdn",
   "main": "nodecdnApp.js",
   "dependencies": {
@@ -16,7 +16,15 @@
     "serve": "npx nodemon nodecdnApp",
     "appfun": "nodemon app"
   },
-  "author": "aydincandan@gmail.com",
+  "author": "Aydin Candan <aydincandan@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aydincandan/back-end-nodecdn.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aydincandan/back-end-nodecdn/issues"
+  },
+  "homepage": "https://github.com/aydincandan/back-end-nodecdn#readme",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.1.7"

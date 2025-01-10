@@ -36,24 +36,24 @@ app.use(mycors.corsWithwhitelist);
 
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-// app.get("/nodecdn/MyCSOmodule.js", async (req, res) => {
+// app.get("/nodecdn/MandrakeModule.js", async (req, res) => {
 //   // https://chatgpt.com/share/67533c08-9eac-8011-9160-aa432b147558
 
 //   // try {
 //   // Dosyanın tam yolunu belirtin
-//   const filePath = path.join(__dirname, "../back-end-nodemiddle/MyCSOmodule.js");
+//   const filePath = path.join(__dirname, "../back-end-nodemiddle/MandrakeModule.js");
 //   console.log(filePath)
 //   res.status(200).sendFile(filePath);
 //   // } catch (error) {
-//   //   console.log("MyCSOmodule.js Dosya gönderiminde hata:", error);
+//   //   console.log("MandrakeModule.js Dosya gönderiminde hata:", error);
 //   //   res.status(500).send("Dosya sunulurken, bir hata oluştu.");
 //   // }
 // });
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-app.get("/rediscdn/MyCSOmodule.js", async (req, res) => {
-  const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/MyCSOmodule.js");
-  const yerelfilePath = path.join(__dirname, "./MyCSOmodule.js");
+app.get("/rediscdn/MandrakeModule.js", async (req, res) => {
+  const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/MandrakeModule.js");
+  const yerelfilePath = path.join(__dirname, "./MandrakeModule.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
   console.log(yerelfilePath)// production için atılması(okunması) gereken bu yerelfilePath
   res.status(200).sendFile(yerelfilePath);
@@ -70,7 +70,7 @@ app.get("/rediscdn/XanaduModule.js", async (req, res) => {
 const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
   // nodemon.json
   // {
-  //   "ignore": ["./", "XanaduModule.js", "MyCSOmodule.js", "XanaduModule.txt", "MyCSOmodule.txt"]
+  //   "ignore": ["./", "XanaduModule.js", "MandrakeModule.js", "XanaduModule.txt", "MandrakeModule.txt"]
   // }
 
 
