@@ -80,6 +80,7 @@ const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
   if (newContentUglify.error == undefined) {
     fs.writeFileSync(yerelfilePath, newContentUglify.code, 'utf-8');
     console.log(yerelfilePath, 'Dosya kaydedildi.');
+    console.log("\t https://www.jsdelivr.com/tools/purge \tADRESİNDEN ilgili modülünün cache'sini SİLMEYİ UNUTMA!")
   } else {
     console.log(newContentUglify.error); console.log("çirkinleştirme BAŞARISIZ");
   }
@@ -109,7 +110,11 @@ const cluster = require('cluster');
 
 const express = require('express');
 const app = express();
-app.listen(3001, () => { console.log("app listen 3001") });
+app.listen(3001, () => { 
+  console.log("app listen 3001")
+  console.log()
+  console.log("\t https://www.jsdelivr.com/tools/purge \tADRESİNDEN ilgili modülünün cache'sini SİLMEYİ UNUTMA!")
+ });
 // bunu mu kullanayım 
 // yoksa 
 // aşağıdakini mi?  Hangisi daha doğru.  Ayrı ayrı denedim ikiside çalışıyor? CEVAP : https://chatgpt.com/share/676fdcb9-353c-8011-93ca-bc7b28b0b787
