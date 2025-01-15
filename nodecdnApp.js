@@ -129,7 +129,7 @@ const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
 
-const UglifyJS = require("uglify-js");
+const UglifyJS = require('uglify-js');
 
 var mycors = require('mycorssets').seturls([]);
 app.use(mycors.corsWithwhitelist);
