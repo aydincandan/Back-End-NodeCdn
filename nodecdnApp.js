@@ -33,7 +33,7 @@ const selftest = () => {
 const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
   // nodemon.json
   // {
-  //   "ignore": ["./", "XanaduModule.js", "MandrakeModule.js", "XanaduModule.txt", "MandrakeModule.txt"]
+  //   "ignore": ["./", "xanadumodule.js", "mandrakemodule.js", "xanadumodule.txt", "mandrakemodule.txt"]
   // }
 
 
@@ -136,47 +136,47 @@ app.use(mycors.corsWithwhitelist);
 
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-// app.get("/nodecdn/MandrakeModule.js", async (req, res) => {
+// app.get("/nodecdn/mandrakemodule.js", async (req, res) => {
 //   // https://chatgpt.com/share/67533c08-9eac-8011-9160-aa432b147558
 
 //   // try {
 //   // Dosyanın tam yolunu belirtin
-//   const filePath = path.join(__dirname, "../back-end-nodemiddle/MandrakeModule.js");
+//   const filePath = path.join(__dirname, "../back-end-nodemiddle/mandrakemodule.js");
 //   console.log(filePath)
 //   res.status(200).sendFile(filePath);
 //   // } catch (error) {
-//   //   console.log("MandrakeModule.js Dosya gönderiminde hata:", error);
+//   //   console.log("mandrakemodule.js Dosya gönderiminde hata:", error);
 //   //   res.status(500).send("Dosya sunulurken, bir hata oluştu.");
 //   // }
 // });
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-const updateMandrakeModule = () => {
-  const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/MandrakeModule.js");
-  const yerelfilePath = path.join(__dirname, "./MandrakeModule.js");
+const updatemandrakemodule = () => {
+  const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/mandrakemodule.js");
+  const yerelfilePath = path.join(__dirname, "./mandrakemodule.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
   // console.log(yerelfilePath)// production için atılması(okunması) gereken bu yerelfilePath
-  console.log("updateMandrakeModule ÇALIŞTI")
+  console.log("updatemandrakemodule ÇALIŞTI")
   return yerelfilePath
 }
-const updateXanaduModule = () => {
-  const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/XanaduModule.js");
-  const yerelfilePath = path.join(__dirname, "./XanaduModule.js");
+const updatexanadumodule = () => {
+  const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/xanadumodule.js");
+  const yerelfilePath = path.join(__dirname, "./xanadumodule.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
   // console.log(yerelfilePath)// production için atılması(okunması) gereken bu yerelfilePath
-  console.log("updateXanaduModule ÇALIŞTI")
+  console.log("updatexanadumodule ÇALIŞTI")
   return yerelfilePath
 }
 
-updateMandrakeModule();
-updateXanaduModule();
+updatemandrakemodule();
+updatexanadumodule();
 
-app.get("/rediscdn/MandrakeModule.js", async (req, res) => {
-  res.status(200).sendFile(updateMandrakeModule());
+app.get("/rediscdn/mandrakemodule.js", async (req, res) => {
+  res.status(200).sendFile(updatemandrakemodule());
 });
-app.get("/rediscdn/XanaduModule.js", async (req, res) => {
-  res.status(200).sendFile(updateXanaduModule());
+app.get("/rediscdn/xanadumodule.js", async (req, res) => {
+  res.status(200).sendFile(updatexanadumodule());
 });
 
 
