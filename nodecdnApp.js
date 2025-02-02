@@ -79,8 +79,11 @@ const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
 
   if (newContentUglify.error == undefined) {
     fs.writeFileSync(yerelfilePath, newContentUglify.code, 'utf-8');
-    console.log(yerelfilePath, 'Dosya kaydedildi.');
-    console.log("\t https://www.jsdelivr.com/tools/purge \tADRESİNDEN ilgili modülünün cache'sini SİLMEYİ UNUTMA!")
+    console.log();
+    console.log('Dosya kaydedildi.');
+    console.log('Github GÜNCELLE: ', yerelfilePath);
+    console.log();
+
   } else {
     console.log(newContentUglify.error); console.log("çirkinleştirme BAŞARISIZ");
   }
@@ -153,19 +156,17 @@ app.use(mycors.corsWithwhitelist);
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 const updatemandrakemodule = () => {
-  const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/mandrakemodule.js");
+  // [ESKI] const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/mandrakemodule.js");
+  const uzakfilePath = path.join(__dirname, "../Back-End-NodeMiddle-npmjs.com/_npmjs/mandrakemodule/mandrakemodule.js");
   const yerelfilePath = path.join(__dirname, "./mandrakemodule.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
-  // console.log(yerelfilePath)// production için atılması(okunması) gereken bu yerelfilePath
-  console.log("updatemandrakemodule ÇALIŞTI")
   return yerelfilePath
 }
 const updatexanadumodule = () => {
-  const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/xanadumodule.js");
-  const yerelfilePath = path.join(__dirname, "./xanadumodule.js");
+  // [ESKI] const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/xanadumodule.js");
+  const uzakfilePath = path.join(__dirname, '../Back-End-NodeMiddle-npmjs.com/_npmjs/xanaduland/xanaduland.js');
+  const yerelfilePath = path.join(__dirname, "./xanaduland.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
-  // console.log(yerelfilePath)// production için atılması(okunması) gereken bu yerelfilePath
-  console.log("updatexanadumodule ÇALIŞTI")
   return yerelfilePath
 }
 
