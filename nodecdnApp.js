@@ -33,7 +33,7 @@ const selftest = () => {
 const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
   // nodemon.json
   // {
-  //   "ignore": ["./", "xanadumodule.js", "mandrakemodule.js", "xanadumodule.txt", "mandrakemodule.txt"]
+  //   "ignore": ["./", "xanaduland.js", "mandrakemodule.js", "xanaduland.txt", "mandrakemodule.txt"]
   // }
 
 
@@ -162,8 +162,8 @@ const updatemandrakemodule = () => {
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
   return yerelfilePath
 }
-const updatexanadumodule = () => {
-  // [ESKI] const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/xanadumodule.js");
+const updatexanaduland = () => {
+  // [ESKI] const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/xanaduland.js");
   const uzakfilePath = path.join(__dirname, '../Back-End-NodeMiddle-npmjs.com/_npmjs/xanaduland/xanaduland.js');
   const yerelfilePath = path.join(__dirname, "./xanaduland.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
@@ -171,13 +171,13 @@ const updatexanadumodule = () => {
 }
 
 updatemandrakemodule();
-updatexanadumodule();
+updatexanaduland();
 
 app.get("/rediscdn/mandrakemodule.js", async (req, res) => {
   res.status(200).sendFile(updatemandrakemodule());
 });
-app.get("/rediscdn/xanadumodule.js", async (req, res) => {
-  res.status(200).sendFile(updatexanadumodule());
+app.get("/rediscdn/xanaduland.js", async (req, res) => {
+  res.status(200).sendFile(updatexanaduland());
 });
 
 
