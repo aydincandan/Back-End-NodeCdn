@@ -1,7 +1,7 @@
 {
   "name": "back-end-nodecdn",
-  "version": "1.1.0",
-  "description": "herkesin ortak cdn",
+  "version": "1.1.1",
+  "description": "enson nandrakemodule(1.0.3) guncellendi",
   "main": "nodecdnApp.js",
   "dependencies": {
     "cluster": "^0.7.7",
