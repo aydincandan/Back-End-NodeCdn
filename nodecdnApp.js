@@ -77,11 +77,27 @@ const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
     }
   }
 
+  const dosya = path.basename(yerelfilePath)
   if (newContentUglify.error == undefined) {
     fs.writeFileSync(yerelfilePath, newContentUglify.code, 'utf-8');
     console.log();
-    console.log('Dosya kaydedildi.');
-    console.log('Github GÜNCELLE: ', yerelfilePath);
+    console.log(dosya, 'değişti.');
+    console.log('\tGithub GÜNCELLE: ', yerelfilePath);
+    if (dosya == "mandrakemodule.js") {
+      console.log("\thttps://www.jsdelivr.com/tools/purge", "Adresine git. Aşağıdaki adresi purge Et.")
+      console.log("\thttps://cdn.jsdelivr.net/gh/aydincandan/Back-End-NodeCdn/mandrakemodule.js")
+      console.log('\t(require/import için) npm publish YAP: ../Back-End-NodeMiddle-npmjs.com/_npmjs/mandrakemodule> npm publish');
+    }
+    else if (dosya == "xanaduland.js") {
+      console.log("\thttps://www.jsdelivr.com/tools/purge", "Adresine git. Aşağıdaki adresi purge Et.")
+      console.log("\thttps://cdn.jsdelivr.net/gh/aydincandan/Back-End-NodeCdn/xanaduland.js")
+      console.log('\t(require/import için) npm publish YAP: ../Back-End-NodeMiddle-npmjs.com/_npmjs/xanaduland> npm publish');
+    } else {
+      console.log("\tdosya beklenildiği gibi .js değil fakat yine de varsa aşağıdakilerini yap.")
+      console.log("\thttps://www.jsdelivr.com/tools/purge", "Adresine git. Aşağıdaki adresi purge Et.")
+      console.log("\thttps://cdn.jsdelivr.net/gh/aydincandan/Back-End-NodeCdn/xxxxxx.?")
+      console.log('\t(require/import için) npm publish YAP: ../Back-End-NodeMiddle-npmjs.com/_npmjs/xxxxxxx> npm publish');
+    }
     console.log();
 
   } else {
@@ -113,11 +129,10 @@ const cluster = require('cluster');
 
 const express = require('express');
 const app = express();
-app.listen(3001, () => { 
+app.listen(3001, () => {
   console.log("app listen 3001")
   console.log()
-  console.log("\t https://www.jsdelivr.com/tools/purge \tADRESİNDEN ilgili modülünün cache'sini SİLMEYİ UNUTMA!")
- });
+});
 // bunu mu kullanayım 
 // yoksa 
 // aşağıdakini mi?  Hangisi daha doğru.  Ayrı ayrı denedim ikiside çalışıyor? CEVAP : https://chatgpt.com/share/676fdcb9-353c-8011-93ca-bc7b28b0b787
@@ -156,14 +171,12 @@ app.use(mycors.corsWithwhitelist);
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 const updatemandrakemodule = () => {
-  // [ESKI] const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/mandrakemodule.js");
   const uzakfilePath = path.join(__dirname, "../Back-End-NodeMiddle-npmjs.com/_npmjs/mandrakemodule/mandrakemodule.js");
   const yerelfilePath = path.join(__dirname, "./mandrakemodule.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
   return yerelfilePath
 }
 const updatexanaduland = () => {
-  // [ESKI] const uzakfilePath = path.join(__dirname, "../back-end-nodemiddle/ClientServerModules/xanaduland.js");
   const uzakfilePath = path.join(__dirname, '../Back-End-NodeMiddle-npmjs.com/_npmjs/xanaduland/xanaduland.js');
   const yerelfilePath = path.join(__dirname, "./xanaduland.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
