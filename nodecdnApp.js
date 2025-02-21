@@ -171,13 +171,13 @@ app.use(mycors.corsWithwhitelist);
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 const updatemandrakemodule = () => {
-  const uzakfilePath = path.join(__dirname, "../Back-End-NodeMiddle-npmjs.com/_npmjs/mandrakemodule/mandrakemodule.js");
+  const uzakfilePath = path.join(__dirname, "../Back-End-NodeMiddle-npmjs.com/_npmjs/mandrakemodule/index.js");
   const yerelfilePath = path.join(__dirname, "./mandrakemodule.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
   return yerelfilePath
 }
 const updatexanaduland = () => {
-  const uzakfilePath = path.join(__dirname, '../Back-End-NodeMiddle-npmjs.com/_npmjs/xanaduland/xanaduland.js');
+  const uzakfilePath = path.join(__dirname, '../Back-End-NodeMiddle-npmjs.com/_npmjs/xanaduland/index.js');
   const yerelfilePath = path.join(__dirname, "./xanaduland.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
   return yerelfilePath
