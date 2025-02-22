@@ -186,10 +186,10 @@ const updatexanaduland = () => {
 updatemandrakemodule();
 updatexanaduland();
 
-app.get("/rediscdn/mandrakemodule.js", async (req, res) => {
+app.get("/back-end-nodecdn/mandrakemodule.js", async (req, res) => {
   res.status(200).sendFile(updatemandrakemodule());
 });
-app.get("/rediscdn/xanaduland.js", async (req, res) => {
+app.get("/back-end-nodecdn/xanaduland.js", async (req, res) => {
   res.status(200).sendFile(updatexanaduland());
 });
 
