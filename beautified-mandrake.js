@@ -88,7 +88,7 @@ let modulFUNCmdk = d => {
             console.log(""), console.log("=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|=|"), 
             o.status(n).json(l);
         },
-        isMyBrowser: function() {
+        isBrowser: function() {
             return "undefined" != typeof window && void 0 !== window.document;
         },
         isNode: function() {

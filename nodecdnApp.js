@@ -180,10 +180,11 @@ app.use(mycors.corsWithwhitelist);
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 const updatemandrakemodule = () => {
+  const uzakfilePathEski = path.join(__dirname, "../Back-End-NodeMiddle-npmjs.com/_npmjs/mandrakemodule/index-eski.js");
   const uzakfilePath = path.join(__dirname, "../Back-End-NodeMiddle-npmjs.com/_npmjs/mandrakemodule/index.js");
   const yerelfilePath = path.join(__dirname, "./mandrakemodule.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
-  return {uzakfilePath, yerelfilePath}
+  return {uzakfilePath, yerelfilePath, uzakfilePathEski}
 }
 const updatexanaduland = () => {
   const uzakfilePath = path.join(__dirname, '../Back-End-NodeMiddle-npmjs.com/_npmjs/xanaduland/index.js');
@@ -208,6 +209,14 @@ app.get("/back-end-nodecdn/orginal/mandrakemodule.js", async (req, res) => {
 app.get("/back-end-nodecdn/orginal/xanaduland.js", async (req, res) => {
   res.status(200).sendFile(updatexanaduland().uzakfilePath);
 });
+
+
+// başarılı olmasını bekliyorum.
+app.get("/back-end-nodecdn/orginal-eski/mandrakemodule.js", async (req, res) => {
+  res.status(200).sendFile(updatemandrakemodule().uzakfilePathEski);
+});
+
+
 
 // https://chatgpt.com/share/67541ae7-8c48-8011-afe4-5d40bc2eb436
 // if (cluster.isMaster) {
