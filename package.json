@@ -9,7 +9,8 @@
     "express": "^4.21.2",
     "express-session": "^1.18.1",
     "mycorssets": "^1.0.0",
-    "uglify-js": "^3.19.3"
+    "uglify-js": "^3.19.3",
+    "geribak": "npx uglifyjs mandrakemodule.js --beautify -o beautified-mandrake.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

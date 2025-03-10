@@ -82,7 +82,7 @@ const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
     fs.writeFileSync(yerelfilePath, newContentUglify.code, 'utf-8');
     console.log();
     console.log(dosya, 'değişti.');
-    console.log('\tGithub GÜNCELLE: ', yerelfilePath);
+    console.log('# Github GÜNCELLE (Öncesinde; package.json > version : *.+1 yap): ', yerelfilePath);
     if (dosya == "mandrakemodule.js") {
       console.log("\thttps://www.jsdelivr.com/tools/purge", "Adresine git. Aşağıdaki adresi purge Et.")
       console.log("\thttps://cdn.jsdelivr.net/gh/aydincandan/Back-End-NodeCdn/mandrakemodule.js")
@@ -98,13 +98,15 @@ const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
       console.log("\thttps://cdn.jsdelivr.net/gh/aydincandan/Back-End-NodeCdn/xxxxxx.?")
       console.log('\t(require/import için) npm publish YAP: ../Back-End-NodeMiddle-npmjs.com/_npmjs/xxxxxxx> npm publish');
     }
+    console.log("# Son olarak bu modülü("+dosya+") kullanacak olan tüm projelerini güncelle.");
+    console.log("# Yani, ilgili projenin rootuna 'npm outdated' olarak bakarsan güncellenmesi gerektiğini görebilmelisin.");
     console.log();
 
   } else {
     console.log(newContentUglify.error); console.log("çirkinleştirme BAŞARISIZ");
   }
 
-  return newContentUglify
+  // return {newContent, newContentUglify} // aslında bu dönüşe gerek yok ama çalışır
 }
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -129,19 +131,26 @@ const cluster = require('cluster');
 
 const express = require('express');
 const app = express();
+// ------------------------
 app.listen(3001, () => {
   console.log("app listen 3001")
   console.log()
 });
 // bunu mu kullanayım 
+// ------------------------
 // yoksa 
 // aşağıdakini mi?  Hangisi daha doğru.  Ayrı ayrı denedim ikiside çalışıyor? CEVAP : https://chatgpt.com/share/676fdcb9-353c-8011-93ca-bc7b28b0b787
-// const express = require('express');
-// const app = express();
-// const http = require('http');
-// const server = http.createServer(app);
-// server.listen(3001, () => { console.log("server listen 3001") });
+// ------------------------
+const http = require('http');
+const server = http.createServer(app);
+server.listen(3002, () => { console.log("server listen 3002") }); // ikisinide böyle kullanalım fazla mal göz çıkarmaz!:-)
 
+// netstat -ano | findstr :3001
+// SONUÇ
+// TCP    0.0.0.0:3001   0.0.0.0:0   LISTENING   1234
+// İSE
+// tasklist | findstr 1234
+// 1234 neymiş gör.
 
 const path = require('path');
 const fs = require('fs');
@@ -174,25 +183,31 @@ const updatemandrakemodule = () => {
   const uzakfilePath = path.join(__dirname, "../Back-End-NodeMiddle-npmjs.com/_npmjs/mandrakemodule/index.js");
   const yerelfilePath = path.join(__dirname, "./mandrakemodule.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
-  return yerelfilePath
+  return {uzakfilePath, yerelfilePath}
 }
 const updatexanaduland = () => {
   const uzakfilePath = path.join(__dirname, '../Back-End-NodeMiddle-npmjs.com/_npmjs/xanaduland/index.js');
   const yerelfilePath = path.join(__dirname, "./xanaduland.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
-  return yerelfilePath
+  return {uzakfilePath, yerelfilePath}
 }
 
 updatemandrakemodule();
 updatexanaduland();
 
 app.get("/back-end-nodecdn/mandrakemodule.js", async (req, res) => {
-  res.status(200).sendFile(updatemandrakemodule());
+  res.status(200).sendFile(updatemandrakemodule().yerelfilePath);
 });
 app.get("/back-end-nodecdn/xanaduland.js", async (req, res) => {
-  res.status(200).sendFile(updatexanaduland());
+  res.status(200).sendFile(updatexanaduland().yerelfilePath);
 });
 
+app.get("/back-end-nodecdn/orginal/mandrakemodule.js", async (req, res) => {
+  res.status(200).sendFile(updatemandrakemodule().uzakfilePath);
+});
+app.get("/back-end-nodecdn/orginal/xanaduland.js", async (req, res) => {
+  res.status(200).sendFile(updatexanaduland().uzakfilePath);
+});
 
 // https://chatgpt.com/share/67541ae7-8c48-8011-afe4-5d40bc2eb436
 // if (cluster.isMaster) {
