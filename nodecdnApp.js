@@ -182,17 +182,21 @@ app.use(mycors.corsWithwhitelist);
 // });
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 // // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+const MANDRAKEuzakfilePath = path.join(__dirname, "../Back-End-NodeMiddle-npmjs.com/_npmjs/mandrakemodule/index.js");
+const MANDRAKEyerelfilePath = path.join(__dirname, "./mandrakemodule.js");
+const XANADUuzakfilePath = path.join(__dirname, '../Back-End-NodeMiddle-npmjs.com/_npmjs/xanaduland/index.js');
+const XANADUyerelfilePath = path.join(__dirname, "./xanaduland.js");
 
 const updatemandrakemodule = () => {
   const uzakfilePathEski = path.join(__dirname, "../Back-End-NodeMiddle-npmjs.com/_npmjs/mandrakemodule/index-eski.js");
-  const uzakfilePath = path.join(__dirname, "../Back-End-NodeMiddle-npmjs.com/_npmjs/mandrakemodule/index.js");
-  const yerelfilePath = path.join(__dirname, "./mandrakemodule.js");
+  const uzakfilePath = MANDRAKEuzakfilePath;
+  const yerelfilePath = MANDRAKEyerelfilePath;
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
   return { uzakfilePath, yerelfilePath, uzakfilePathEski }
 }
 const updatexanaduland = () => {
-  const uzakfilePath = path.join(__dirname, '../Back-End-NodeMiddle-npmjs.com/_npmjs/xanaduland/index.js');
-  const yerelfilePath = path.join(__dirname, "./xanaduland.js");
+  const uzakfilePath = XANADUuzakfilePath;
+  const yerelfilePath = XANADUyerelfilePath;
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
   return { uzakfilePath, yerelfilePath }
 }
@@ -215,10 +219,10 @@ app.get("/back-end-nodecdn/orginal/xanaduland.js", async (req, res) => {
 });
 
 
-// başarılı olmasını bekliyorum.
-app.get("/back-end-nodecdn/orginal-eski/mandrakemodule.js", async (req, res) => {
-  res.status(200).sendFile(updatemandrakemodule().uzakfilePathEski);
-});
+// // başarılı olmasını bekliyorum.
+// app.get("/back-end-nodecdn/orginal-eski/mandrakemodule.js", async (req, res) => {
+//   res.status(200).sendFile(updatemandrakemodule().uzakfilePathEski);
+// });
 
 
 

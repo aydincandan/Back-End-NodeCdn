@@ -1,3 +1,4 @@
 {
+    "watch": ["../Back-End-NodeMiddle-npmjs.com/_npmjs/mandrakemodule/index.js", "../Back-End-NodeMiddle-npmjs.com/_npmjs/xanaduland/index.js"],
     "ignore": ["./", "xanaduland.js", "mandrakemodule.js", "xanaduland.txt", "mandrakemodule.txt"]
 }
