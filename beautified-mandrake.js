@@ -1,4 +1,4 @@
-let modulFUNCmdk = d => {
+let guzell = d => {
     let t = (e, o) => {
         if (null !== e && "object" == typeof e) for (var n in e) "number" != typeof e[n] && "function" != typeof e[n] && (console.log("\t", typeof e[n], {
             key: n
@@ -188,4 +188,4 @@ let modulFUNCmdk = d => {
     define([ "fs" ], o)) : "object" == typeof module && "object" == typeof module.exports ? (console.log("--------------- mandrakemodule CJS"), 
     module.exports = o(require("fs"))) : (console.log("--------------- mandrakemodule BRW-1"), 
     void 0 === e.fs ? console.error("HATA: global.fs tanımlı değil!") : e.mandrakemodule = o(e.fs));
-})(globalSCOPEmdk, modulFUNCmdk);
+})(globalSCOPEmdk, guzell);
