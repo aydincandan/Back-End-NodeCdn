@@ -141,9 +141,9 @@ let modulFUNCmdk = d => {
                 i = r.mndrk_Actions;
                 Array.isArray(i) && i.forEach((e, o, n) => {
                     1 == c && 1 == u ? n[o] = e : 1 == f && 1 == g ? n[o] = e.replace(a(e), l) : n[o] = "action bilinmiyor";
-                }), document.getElementById("selectedRedActionDiv") || ((s = document.createElement("div")).id = "selectedRedActionDiv", 
+                }), document.getElementById("MndrkDIV") || ((s = document.createElement("div")).id = "MndrkDIV", 
                 s.style = "color:red", m.after(s));
-                let o = document.getElementById("selectedRedActionDiv");
+                let o = document.getElementById("MndrkDIV");
                 if (o && (o.innerText = i[0], m.action = i[0]), !document.getElementById("actions")) {
                     let t = document.createElement("select");
                     t.id = "actions", t.name = "actions", o.before(t), Array.isArray(i) && i.forEach((e, o) => {

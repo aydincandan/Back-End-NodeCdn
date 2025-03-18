@@ -6,16 +6,17 @@
   "dependencies": {
     "cluster": "^0.7.7",
     "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-session": "^1.18.1",
     "mycorssets": "^1.0.0",
-    "uglify-js": "^3.19.3",
-    "geribak": "npx uglifyjs mandrakemodule.js --beautify -o beautified-mandrake.js"
+    "uglify-js": "^3.19.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "npx nodemon nodecdnApp",
-    "appfun": "nodemon app"
+    "appfun": "nodemon app",
+    "geribak": "npx uglifyjs mandrakemodule.js --beautify -o beautified-mandrake.js"
   },
   "author": "Aydin Candan <aydincandan@gmail.com>",
   "repository": {

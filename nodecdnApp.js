@@ -98,7 +98,7 @@ const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
       console.log("\thttps://cdn.jsdelivr.net/gh/aydincandan/Back-End-NodeCdn/xxxxxx.?")
       console.log('\t(require/import için) npm publish YAP: ../Back-End-NodeMiddle-npmjs.com/_npmjs/xxxxxxx> npm publish');
     }
-    console.log("# Son olarak bu modülü("+dosya+") kullanacak olan tüm projelerini güncelle.");
+    console.log("# Son olarak bu modülü(" + dosya + ") kullanacak olan tüm projelerini güncelle.");
     console.log("# Yani, ilgili projenin rootuna 'npm outdated' olarak bakarsan güncellenmesi gerektiğini görebilmelisin.");
     console.log();
 
@@ -115,7 +115,7 @@ const sikistir_IfChanged_save = (uzakfilePath, yerelfilePath) => {
 
 
 
-const cluster = require('cluster');
+// const cluster = require('cluster');
 
 
 // const { express, app, server, port, catchallroute } = require('../Back-End-NodeMiddle-npmjs.com/_npmjs/express-layer')
@@ -127,13 +127,17 @@ const cluster = require('cluster');
 
 
 
+// import 'dotenv/config'; // process.env için .ts içinde böyle..
+const dotENV = require('dotenv').config().parsed
+const portenvp = parseInt(process.env.PORT, 10)
+const portenv = parseInt(dotENV.PORT, 10)
 
-
+console.log({ portenvp, portenv })
 const express = require('express');
 const app = express();
 // ------------------------
-app.listen(3001, () => {
-  console.log("app listen 3001")
+app.listen(portenv, () => {
+  console.log("app listen " + portenv)
   console.log()
 });
 // bunu mu kullanayım 
@@ -143,11 +147,11 @@ app.listen(3001, () => {
 // ------------------------
 const http = require('http');
 const server = http.createServer(app);
-server.listen(3002, () => { console.log("server listen 3002") }); // ikisinide böyle kullanalım fazla mal göz çıkarmaz!:-)
+server.listen((portenv + 1), () => { console.log("server listen " + (portenv + 1)) }); // ikisinide böyle kullanalım fazla mal göz çıkarmaz!:-)
 
-// netstat -ano | findstr :3001
+// netstat -ano | findstr :4001
 // SONUÇ
-// TCP    0.0.0.0:3001   0.0.0.0:0   LISTENING   1234
+// TCP    0.0.0.0:4001   0.0.0.0:0   LISTENING   1234
 // İSE
 // tasklist | findstr 1234
 // 1234 neymiş gör.
@@ -184,13 +188,13 @@ const updatemandrakemodule = () => {
   const uzakfilePath = path.join(__dirname, "../Back-End-NodeMiddle-npmjs.com/_npmjs/mandrakemodule/index.js");
   const yerelfilePath = path.join(__dirname, "./mandrakemodule.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
-  return {uzakfilePath, yerelfilePath, uzakfilePathEski}
+  return { uzakfilePath, yerelfilePath, uzakfilePathEski }
 }
 const updatexanaduland = () => {
   const uzakfilePath = path.join(__dirname, '../Back-End-NodeMiddle-npmjs.com/_npmjs/xanaduland/index.js');
   const yerelfilePath = path.join(__dirname, "./xanaduland.js");
   sikistir_IfChanged_save(uzakfilePath, yerelfilePath)
-  return {uzakfilePath, yerelfilePath}
+  return { uzakfilePath, yerelfilePath }
 }
 
 updatemandrakemodule();
